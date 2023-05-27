@@ -5,7 +5,7 @@ from src.Player import Player
 import keyboard as kb
 
 class Main:
-  height = 10
+  height: int = 10
   
   def start():
     player = Player(Main.height)

@@ -1,10 +1,11 @@
 import os
+import random
 
 class UIPrinter:
   def printTopMargin():
     print("┌───────────────────────────┐")
     
-  def printGameRow(segInRow):
+  def printGameRow(segInRow: list[tuple[int, int]]):
     defaultRow = "│                           │"
     listRowChars = list(defaultRow)
     
@@ -19,7 +20,7 @@ class UIPrinter:
   def printBotMargin():
     print("└───────────────────────────┘")
     
-  def printFrame(body, height):
+  def printFrame(body: list[tuple[int, int]], height: int):
     os.system('cls' if os.name == 'nt' else 'clear')
     
     UIPrinter.printTopMargin()
@@ -28,6 +29,16 @@ class UIPrinter:
       rowData = list(filter(
         lambda segment: segment[1] == row + 1, body
       ))
+      
       UIPrinter.printGameRow(rowData)
   
     UIPrinter.printBotMargin()
+    
+  def generateFruit(body: list[tuple[int, int]]):
+    while True:
+        x = random.randint(0, 9)
+        y = random.randint(0, 9)
+        fruit = (x, y)
+
+        if fruit not in body:
+            return fruit

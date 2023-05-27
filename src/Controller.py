@@ -1,6 +1,14 @@
+from typing import Callable
+from keyboard import KeyboardEvent
+
 class Controller:
+  
+  
   @staticmethod
-  def updateDirection(setDirection, getDirection):
+  def updateDirection(
+    setDirection: Callable[[str], None],
+    getDirection: Callable[[], str]
+  ) -> Callable[[KeyboardEvent], None] :
     def kbListener(event):
       currentDir = getDirection()
       noVertical = currentDir in ["right", "left"]
@@ -17,3 +25,4 @@ class Controller:
           if noHorizontal: setDirection("left")
       
     return kbListener
+  

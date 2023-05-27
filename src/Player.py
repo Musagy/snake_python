@@ -1,9 +1,19 @@
+from dataclasses import dataclass
+
+@dataclass
 class Player:
-  def __init__(self, height):
+  height: int
+  initHeight: int
+  direction: str
+  redirectionCD: bool
+  life: bool
+  body: list[tuple[int, int]]
+    
+  def __init__(self, height: int):
     self.height = height
     self.initHeight = int(height/2)
     self.direction = "right"
-    self.setDirCD = False
+    self.redirectionCD = False
     self.life = True
     self.body = [
       (11, self.initHeight),
@@ -12,17 +22,17 @@ class Player:
       (14, self.initHeight)
     ]
     
-  def setDirection(self, newDirection):
-      if not self.setDirCD:
+  def setDirection(self, newDirection: str):
+      if not self.redirectionCD:
         self.direction = newDirection
-        self.setDirCD = True
+        self.redirectionCD = True
         
   def getDirection(self):
       return self.direction
     
   def step(self):
     newPosition = list(self.body[-1])
-    self.setDirCD = False
+    self.redirectionCD = False
     
     match self.direction:
       case "right":
@@ -39,4 +49,6 @@ class Player:
     else:
       self.body.pop(0)
       self.body.append(tuple(newPosition))
+      
+  # def verifyNoCollapse():
     
