@@ -10,7 +10,6 @@ class Main:
   
   def start(self):
     player = Player(self.height)
-    point = 0
     fruit = Fruit(
       hs = self.height,
       ws = 27,
